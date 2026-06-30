@@ -17,7 +17,6 @@ try:
         for linha in arquivo:
             dado = linha.strip()
             
-            # Condicional que você já usa para proteger a conversão
             if dado.isdigit():
                 soma += int(dado)
                 

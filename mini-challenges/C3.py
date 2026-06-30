@@ -15,7 +15,6 @@ else:
                 maior_sequencia = sequencia_atual
             sequencia_atual = [nums[i]]
 
-    # Verificação final necessária para salvar a última sequência processada
     if len(sequencia_atual) > len(maior_sequencia):
         maior_sequencia = sequencia_atual
 
