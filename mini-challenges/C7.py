@@ -44,9 +44,9 @@ else:
 
 print("-" * 50)
 print("\n")
-if anomalias > tam * 0.2 and anomalias < tam * 0.4:
+if anomalias == 1: #tam * 0.2 and anomalias < tam * 0.4:
     print("status: alerta\n")
-elif anomalias > tam * 0.4:
+elif anomalias > tam * 0.2 and anomalias <= tam * 0.4:
     print("status: instável\n")
 else:
     print("status: crítico!\n")

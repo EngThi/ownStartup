@@ -1,0 +1,10 @@
+--------------------------------------------------
+           RELATÓRIO DE ANOMALIAS
+--------------------------------------------------
+Total de Eventos: 8
+Anomalias Detectadas: 2
+Média dos Valores: 21.38
+Valor Mínimo: 7
+Valor Máximo: 50
+Status do Sistema: instável
+--------------------------------------------------
