@@ -97,7 +97,7 @@ if gif_path.exists():
     """
     st.sidebar.markdown(sidebar_gif_html, unsafe_allow_html=True)
 
-st.sidebar.markdown("### 🎯 Cenários Pré-configurados")
+st.sidebar.markdown("### Cenários Pré-configurados")
 cenario_escolhido = st.sidebar.selectbox(
     "Carregar parâmetros de referência:",
     [
@@ -152,7 +152,7 @@ else:
     )
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("### ⚙️ Parâmetros Operacionais")
+st.sidebar.markdown("### Parâmetros Operacionais")
 
 caixa = st.sidebar.number_input(
     "Caixa Inicial (R$)", min_value=0.0, value=def_caixa, step=2500.0, format="%.2f"
@@ -206,7 +206,7 @@ df_projecao = pd.DataFrame(historico)
 
 # Cards
 
-st.markdown("### 📊 Indicadores Principais")
+st.markdown("### Indicadores Principais")
 c1, c2, c3, c4 = st.columns(4)
 
 with c1:
@@ -255,35 +255,35 @@ st.markdown("---")
 
 # Diagnóstico
 
-st.markdown("### 🩺 Diagnóstico do Negócio")
+st.markdown("### Diagnóstico do Negócio")
 col_diag1, col_diag2 = st.columns(2)
 
 with col_diag1:
     if falencia is not None:
         st.error(
-            f"🚨 **Esgotamento de Caixa Previsto no Mês {falencia}**: Seu capital disponível zera antes do final de 12 meses. É mandatório reduzir CAC ou custos fixos."
+            f"**Esgotamento de Caixa Previsto no Mês {falencia}**: Seu capital disponível zera antes do final de 12 meses. É mandatório reduzir CAC ou custos fixos."
         )
     elif runway < 6:
         st.error(
-            f"🚨 **Alerta Crítico de Runway ({runway:.1f} meses)**: O caixa atual durará menos de meio ano no ritmo de queima projetado."
+            f"**Alerta Crítico de Runway ({runway:.1f} meses)**: O caixa atual durará menos de meio ano no ritmo de queima projetado."
         )
     else:
         st.success(
-            f"🛡️ **Reserva Operacional Segura ({runway:.1f} meses)**: Capacidade de absorver flutuações e financiar aquisição com margem."
+            f"**Reserva Operacional Segura ({runway:.1f} meses)**: Capacidade de absorver flutuações e financiar aquisição com margem."
         )
 
 with col_diag2:
     if breakeven is not None:
         st.info(
-            f"⚡ **Ponto de Equilíbrio (Break-even) Atingido no Mês {breakeven}**: A partir deste mês a receita mensal ultrapassa todas as despesas operacionais!"
+            f"**Ponto de Equilíbrio (Break-even) Atingido no Mês {breakeven}**: A partir deste mês a receita mensal ultrapassa todas as despesas operacionais!"
         )
     elif ltv_cac < 3:
         st.warning(
-            f"⚠️ **Relação LTV/CAC Baixa ({ltv_cac:.2f}x)**: O retorno por cliente está muito próximo do custo de aquisição. O benchmark de segurança é $\\ge 3.0\\times$."
+            f"**Relação LTV/CAC Baixa ({ltv_cac:.2f}x)**: O retorno por cliente está muito próximo do custo de aquisição. O benchmark de segurança é $\\ge 3.0\\times$."
         )
     else:
         st.success(
-            f"🎯 **Unit Economics Sustentáveis ({ltv_cac:.2f}x)**: Margem de contribuição saudável que permite acelerar marketing."
+            f"**Unit Economics Sustentáveis ({ltv_cac:.2f}x)**: Margem de contribuição saudável que permite acelerar marketing."
         )
 
 st.markdown("---")
