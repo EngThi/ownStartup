@@ -77,5 +77,5 @@ The application will start locally at `http://localhost:8501`.
 
 ## Live Deployment
 
-- **Production (Self-Hosted on Hack Club Nest VM)**: [startup.chefthi.hackclub.app](https://startup.chefthi.hackclub.app)
+- **Production (Self-Hosted on Hack Club Nest VM)**: [ownstartup.chefthi.hackclub.app](https://ownstartup.chefthi.hackclub.app)
 - **Alternative Mirror**: [ownstartup.streamlit.app](https://ownstartup.streamlit.app)
