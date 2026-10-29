@@ -1,5 +1,13 @@
-mini-challenges/.venvpyrefly.toml
-mini-challenges/.venv
-mini-challenges/__pycache__
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
 
+# Virtual environments
+.venv/
+*/.venv/
+
+# Tooling and IDE
 .wakatime-project
+*.pyrefly.toml
+.DS_Store

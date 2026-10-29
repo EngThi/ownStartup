@@ -92,8 +92,11 @@ if gif_path.exists():
         gif_bytes = f.read()
     gif_b64 = base64.b64encode(gif_bytes).decode("utf-8")
     sidebar_gif_html = f"""
-    <div style="text-align: center; margin-bottom: 15px;">
+    <div style="text-align: center; margin-bottom: 6px;">
         <img src="data:image/gif;base64,{gif_b64}" width="115" style="filter: drop-shadow(0 4px 14px rgba(56,189,248,0.35));" />
+    </div>
+    <div style="text-align: center; margin-bottom: 15px;">
+        <a href="https://www.flaticon.com/free-animated-icons/business-development" target="_blank" title="business development animated icons" style="color: #64748b; font-size: 0.68rem; text-decoration: none;">Icon by Magnific · Flaticon</a>
     </div>
     """
     st.sidebar.markdown(sidebar_gif_html, unsafe_allow_html=True)
