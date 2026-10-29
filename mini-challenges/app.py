@@ -47,7 +47,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# CSS Customizado Técnico & Profissional (sem cores apagadas)
+# Technical & Clean CSS Styling
 st.markdown(
     """
 <style>
@@ -61,7 +61,6 @@ code, pre {
     font-family: 'JetBrains Mono', monospace !important;
 }
 
-/* Header técnico e direto */
 .lab-header {
     background: #0f172a;
     border: 1px solid #1e293b;
@@ -83,7 +82,6 @@ code, pre {
     font-size: 0.95rem;
 }
 
-/* Cards com alto contraste e legibilidade */
 .module-card {
     background: #1e293b;
     border: 1px solid #334155;
@@ -108,7 +106,6 @@ code, pre {
     margin: 0;
 }
 
-/* Métricas limpas */
 div[data-testid="stMetric"] {
     background-color: #1e293b;
     border: 1px solid #334155;
@@ -126,7 +123,6 @@ div[data-testid="stMetric"] div[data-testid="stMetricValue"] {
     font-weight: 700 !important;
 }
 
-/* Badges de Status Operacional */
 .status-badge {
     padding: 4px 12px;
     border-radius: 6px;
@@ -164,22 +160,22 @@ st.markdown(
     """
 <div class="lab-header">
     <h1 class="lab-title">ownStartup | Pattern Lab</h1>
-    <p class="lab-subtitle">Módulos de análise estatística, detecção de anomalias em séries temporais e documentação técnica.</p>
+    <p class="lab-subtitle">Statistical analysis modules, time series anomaly detection, and technical documentation.</p>
 </div>
 """,
     unsafe_allow_html=True,
 )
 
 # Navigation Sidebar
-st.sidebar.subheader("Navegação")
+st.sidebar.subheader("Navigation")
 secao = st.sidebar.radio(
-    "Módulos:",
+    "Modules:",
     [
-        "Visão Geral",
-        "Detector de Anomalias (Z-Score)",
-        "Estatística Descritiva",
-        "Simulador de Sinais",
-        "Diário de Desenvolvimento",
+        "Overview",
+        "Anomaly Detector (Z-Score)",
+        "Descriptive Statistics",
+        "Signal Simulator",
+        "Development Journal",
     ],
     index=0,
 )
@@ -187,13 +183,12 @@ secao = st.sidebar.radio(
 if "dados_entrada" not in st.session_state:
     st.session_state.dados_entrada = "12 15 14 13 16 15 52 14 13 15 8 14"
 
-# Geral
-
-if secao == "Visão Geral":
-    st.markdown("### Arquitetura do Sistema")
+# Overview
+if secao == "Overview":
+    st.markdown("### System Architecture")
     st.write(
-        "O Pattern Lab reúne rotinas de análise quantitativa implementadas em Python puro para verificação de fluxos de eventos, "
-        "validação estatística de logs e modelagem de sustentabilidade operacional no ecossistema do ownStartup."
+        "Pattern Lab gathers quantitative analysis routines implemented in pure Python to verify event streams, "
+        "validate operational log statistics, and support decision modeling within the ownStartup ecosystem."
     )
 
     c1, c2 = st.columns(2)
@@ -201,9 +196,9 @@ if secao == "Visão Geral":
         st.markdown(
             """
         <div class="module-card">
-            <h4>Detecção de Anomalias (Z-Score)</h4>
+            <h4>Anomaly Detection (Z-Score)</h4>
             <p>
-                Cálculo de desvio paramétrico em relação à média amostral. Identifica desvios em séries temporais de churn, falhas em serviços ou oscilações atípicas de tráfego.
+                Parametric deviation tracking relative to the sample mean. Identifies spikes in churn time series, service outages, or irregular traffic patterns.
             </p>
         </div>
         """,
@@ -213,9 +208,9 @@ if secao == "Visão Geral":
         st.markdown(
             """
         <div class="module-card">
-            <h4>Estatística Descritiva</h4>
+            <h4>Descriptive Statistics</h4>
             <p>
-                Determinação de mediana resistente a ruídos, desvio padrão amostral e populacional, amplitude e rastreamento linear de sequências contínuas em O(N).
+                Calculates noise-resistant median, sample and population standard deviations, range, and linear consecutive sequence detection in O(N).
             </p>
         </div>
         """,
@@ -226,9 +221,9 @@ if secao == "Visão Geral":
         st.markdown(
             """
         <div class="module-card">
-            <h4>Gerador de Sinais Sintéticos</h4>
+            <h4>Synthetic Signal Generator</h4>
             <p>
-                Geração controlada de dados com injeção probabilística de desvios para validação de limites de tolerância e calibração de falsos positivos.
+                Controlled generation of synthetic sequences with stochastic anomaly injection to calibrate tolerance thresholds and evaluate false positives.
             </p>
         </div>
         """,
@@ -238,45 +233,44 @@ if secao == "Visão Geral":
         st.markdown(
             """
         <div class="module-card">
-            <h4>Simulador Financeiro</h4>
+            <h4>Financial Simulator</h4>
             <p>
-                Projeção determinística de fluxo de caixa, tempo de sobrevida (Runway), unit economics (LTV/CAC) e ponto de equilíbrio nos próximos 12 meses. Acesse pela barra lateral.
+                Deterministic projection of cash runway, unit economics (LTV/CAC), and break-even points over a 12-month horizon. Access it via the sidebar.
             </p>
         </div>
         """,
             unsafe_allow_html=True,
         )
 
-# Detector Anomalias
-
-elif secao == "Detector de Anomalias (Z-Score)":
-    st.markdown("### Detecção de Anomalias em Séries Temporais")
+# Anomaly Detector
+elif secao == "Anomaly Detector (Z-Score)":
+    st.markdown("### Time Series Anomaly Detection")
     st.write(
-        "Identificação quantitativa de desvios em relação à média histórica do fluxo de dados."
+        "Quantitative identification of statistical deviations relative to the historical baseline."
     )
 
     st.session_state.dados_entrada = st.text_input(
-        "Sequência numérica (valores inteiros separados por espaço):",
+        "Numeric sequence (space-separated integers):",
         value=st.session_state.dados_entrada,
-        help="Insira valores numéricos representando registros cronológicos.",
+        help="Enter numeric values representing sequential event logs or metric records.",
     )
 
     limite = st.slider(
-        "Limiar de Desvio (Z-Score Threshold):",
+        "Z-Score Threshold:",
         min_value=0.5,
         max_value=3.5,
         value=1.5,
         step=0.1,
-        help="Distância em desvios-padrão a partir da qual o evento é considerado fora da normalidade.",
+        help="Number of standard deviations from the mean before a data point is flagged as an anomaly.",
     )
 
     partes = st.session_state.dados_entrada.split()
 
     if not partes:
-        st.info("Insira uma sequência de dados para iniciar a análise.")
+        st.info("Enter a sequence of numbers above to begin analysis.")
     elif not all(p.replace("-", "", 1).isdigit() for p in partes):
         st.error(
-            "Entrada inválida. Utilize apenas números inteiros separados por espaço."
+            "Invalid input. Please enter only space-separated integers."
         )
     else:
         dados = [int(p) for p in partes]
@@ -288,14 +282,14 @@ elif secao == "Detector de Anomalias (Z-Score)":
 
         m1, m2, m3, m4 = st.columns(4)
         with m1:
-            st.metric("Total de Registros", total)
+            st.metric("Total Records", total)
         with m2:
-            st.metric("Média Amostral", f"{media:.2f}")
+            st.metric("Sample Mean", f"{media:.2f}")
         with m3:
-            st.metric("Desvio Padrão", f"{desvio:.2f}")
+            st.metric("Standard Deviation", f"{desvio:.2f}")
         with m4:
             taxa_anomalias = (anomalias / total * 100) if total > 0 else 0
-            st.metric("Anomalias Detectadas", f"{anomalias} ({taxa_anomalias:.1f}%)")
+            st.metric("Detected Anomalies", f"{anomalias} ({taxa_anomalias:.1f}%)")
 
         st.markdown("---")
 
@@ -306,8 +300,15 @@ elif secao == "Detector de Anomalias (Z-Score)":
             "crítico": "status-critico",
         }.get(status, "status-normal")
 
+        status_en_label = {
+            "100% normal": "NORMAL",
+            "alerta": "ALERT",
+            "instável": "UNSTABLE",
+            "crítico": "CRITICAL",
+        }.get(status, status.upper())
+
         st.markdown(
-            f"**Status Operacional da Série:** <span class='status-badge {badge_class}'>{status.upper()}</span>",
+            f"**System Operational Status:** <span class='status-badge {badge_class}'>{status_en_label}</span>",
             unsafe_allow_html=True,
         )
 
@@ -315,43 +316,41 @@ elif secao == "Detector de Anomalias (Z-Score)":
 
         col_g, col_t = st.columns([2, 1])
         with col_g:
-            st.markdown("#### Gráfico da Série")
+            st.markdown("#### Series Chart")
             st.line_chart(dados)
 
         with col_t:
-            st.markdown("#### Classificação por Ponto")
+            st.markdown("#### Point-by-Point Classification")
             with st.container(height=280):
                 for idx, (val, eh_anomalia) in enumerate(resultados):
                     if eh_anomalia:
-                        st.markdown(f"**[{idx + 1:02d}]** `{val}` — Anômalo")
+                        st.markdown(f"**[{idx + 1:02d}]** `{val}` — Anomaly")
                     else:
                         st.markdown(f"**[{idx + 1:02d}]** `{val}` — Normal")
 
         relatorio_str = (
             "--------------------------------------------------\n"
-            "        RELATÓRIO DE SINAIS - PATTERN LAB\n"
+            "        SIGNAL AUDIT REPORT - PATTERN LAB\n"
             "--------------------------------------------------\n"
-            f"Total de Amostras: {total}\n"
-            f"Anomalias Identificadas: {anomalias}\n"
-            f"Média: {media:.2f} | Desvio Padrão: {desvio:.2f}\n"
-            f"Classificação: {status}\n"
+            f"Total Samples: {total}\n"
+            f"Detected Anomalies: {anomalias}\n"
+            f"Mean: {media:.2f} | Standard Deviation: {desvio:.2f}\n"
+            f"Operational Status: {status_en_label}\n"
             "--------------------------------------------------\n"
         )
         st.download_button(
-            label="Baixar Relatório (.txt)",
+            label="Download Report (.txt)",
             data=relatorio_str,
-            file_name="relatorio_sinais_patternlab.txt",
+            file_name="signal_report_patternlab.txt",
             mime="text/plain",
         )
 
-
-# Descrição estatísticas
-
-elif secao == "Estatística Descritiva":
-    st.markdown("### Análise Estatística e Padrões Numéricos")
+# Descriptive Statistics
+elif secao == "Descriptive Statistics":
+    st.markdown("### Statistical Analysis & Patterns")
 
     st.session_state.dados_entrada = st.text_input(
-        "Sequência numérica:",
+        "Numeric sequence:",
         value=st.session_state.dados_entrada,
     )
 
@@ -373,47 +372,46 @@ elif secao == "Estatística Descritiva":
 
         c1, c2, c3, c4 = st.columns(4)
         with c1:
-            st.metric("Mediana", f"{mediana:.1f}")
-            st.metric("Valor Mínimo", minimo)
+            st.metric("Median", f"{mediana:.1f}")
+            st.metric("Minimum Value", minimo)
         with c2:
-            st.metric("Desvio Amostral (s)", f"{desvio_amostral:.3f}")
-            st.metric("Valor Máximo", maximo)
+            st.metric("Sample Std Dev (s)", f"{desvio_amostral:.3f}")
+            st.metric("Maximum Value", maximo)
         with c3:
-            st.metric("Desvio Populacional (σ)", f"{desvio_pop:.3f}")
-            st.metric("Amplitude Total", maximo - minimo)
+            st.metric("Population Std Dev (σ)", f"{desvio_pop:.3f}")
+            st.metric("Total Range", maximo - minimo)
         with c4:
-            st.metric("Maior Sequência Contínua", f"{len(seq_consec)} elementos")
-            st.caption(f"Subconjunto: `{seq_consec}`")
+            st.metric("Longest Consecutive Run", f"{len(seq_consec)} elements")
+            st.caption(f"Sequence: `{seq_consec}`")
 
         st.markdown("---")
-        with st.expander("Definições Algorítmicas"):
+        with st.expander("Algorithmic Definitions"):
             st.markdown(
                 """
-            - **Média Aritmética:** $\\mu = \\sum x_i / N$
-            - **Desvio Padrão Amostral ($s$):** Aplicação de correção de Bessel ($N-1$) para estimativa não viesada da variância.
-            - **Rastreamento Linear:** Algoritmo determinístico com complexidade temporal $O(N)$ para identificar cadeias ordenadas onde $x_i = x_{i-1} + 1$.
+            - **Arithmetic Mean:** $\\mu = \\sum x_i / N$
+            - **Sample Standard Deviation ($s$):** Bessel's correction applied ($N-1$) for unbiased variance estimation.
+            - **Linear Tracking:** Deterministic $O(N)$ single-pass algorithm detecting consecutive runs where $x_i = x_{i-1} + 1$.
             """
             )
     else:
-        st.warning("Insira uma sequência de inteiros válida.")
+        st.warning("Please enter a valid sequence of integers.")
 
-# Simulador de sinais
-
-elif secao == "Simulador de Sinais":
-    st.markdown("### Geração e Teste de Sinais Sintéticos")
+# Signal Simulator
+elif secao == "Signal Simulator":
+    st.markdown("### Synthetic Signal Generation & Validation")
     st.write(
-        "Criação de séries numéricas com ruído controlado para aferir sensibilidade do modelo de detecção."
+        "Generate controlled numerical sequences with stochastic noise to benchmark detector sensitivity."
     )
 
     c_cfg1, c_cfg2 = st.columns(2)
     with c_cfg1:
-        qtd_simular = st.slider("Quantidade de Amostras", 10, 80, 30)
-        media_simular = st.slider("Média Base", 10, 100, 40)
+        qtd_simular = st.slider("Sample Count", 10, 80, 30)
+        media_simular = st.slider("Base Mean", 10, 100, 40)
     with c_cfg2:
-        taxa_erros = st.slider("Probabilidade de Anomalia (%)", 0, 40, 15)
-        limite_simular = st.slider("Limiar Z de Detecção", 0.5, 3.0, 1.2, 0.1)
+        taxa_erros = st.slider("Anomaly Probability (%)", 0, 40, 15)
+        limite_simular = st.slider("Detection Threshold (Z)", 0.5, 3.0, 1.2, 0.1)
 
-    if st.button("Gerar Nova Amostra", type="primary"):
+    if st.button("Generate New Samples", type="primary"):
         st.session_state.seed_simulacao = random.randint(1, 99999)
 
     random.seed(st.session_state.get("seed_simulacao", 42))
@@ -436,69 +434,67 @@ elif secao == "Simulador de Sinais":
         dados_simulados, media_calc, desvio_calc, limite_simular
     )
 
-    tab_vis, tab_logs = st.tabs(["Visualização Gráfica", "Log de Classificação"])
+    tab_vis, tab_logs = st.tabs(["Chart View", "Classification Log"])
 
     with tab_vis:
         st.line_chart(dados_simulados)
         k1, k2, k3 = st.columns(3)
         with k1:
-            st.metric("Total de Amostras", qtd_simular)
+            st.metric("Total Generated", qtd_simular)
         with k2:
-            st.metric("Anomalias Inseridas", sum(status_real))
+            st.metric("Injected Anomalies", sum(status_real))
         with k3:
-            st.metric("Anomalias Detectadas", anomalias_detec)
+            st.metric("Detected Anomalies", anomalias_detec)
 
     with tab_logs, st.container(height=300):
         for i, val in enumerate(dados_simulados):
-            injetado = "Sim (Ruído)" if status_real[i] else "Não (Normal)"
-            detectado = "Anomalia" if resultados_detec[i][1] else "Normal"
+            injetado = "Yes (Noise)" if status_real[i] else "No (Normal)"
+            detectado = "Anomaly" if resultados_detec[i][1] else "Normal"
             st.markdown(
-                f"**Ponto {i + 1:02d}:** valor `{val}` | Injeção: {injetado} | Detector: {detectado}"
+                f"**Point {i + 1:02d}:** value `{val}` | Injected: {injetado} | Detector: {detectado}"
             )
 
+# Development Journal
+elif secao == "Development Journal":
+    st.markdown("### Technical Development Journal")
+    st.caption("Chronological record of architecture decisions and engineering patterns.")
 
-# Journal legado
-
-elif secao == "Diário de Desenvolvimento":
-    st.markdown("### Diário Técnico de Desenvolvimento")
-    st.caption("Documentação cronológica da arquitetura e das decisões de engenharia.")
-
-    with st.expander("Módulos C1 e C2: I/O de Arquivos e Tratamento de Exceções"):
+    with st.expander("Modules C1 & C2: File I/O and Robust Exception Handling"):
         st.markdown(
             """
-        - Implementação de context managers (`with open(...)`) garantindo fechamento e liberação de descritores no sistema operacional.
-        - Tratamento estrito de exceções (`FileNotFoundError`, `ValueError`) sem capturas genéricas que ocultem falhas de runtime.
+        - Context manager (`with open(...)`) guarantees deterministic OS file descriptor release.
+        - Strict exception handling (`FileNotFoundError`, `ValueError`) preventing runtime failure masking.
         """
         )
 
-    with st.expander("Módulo C3: Algoritmo de Sequências Consecutivas"):
+    with st.expander("Module C3: Consecutive Sequence Algorithm"):
         st.markdown(
             """
-        - Rastreamento linear $O(N)$ em espaço contíguo para identificação de maiores subsequências sem recursão.
-        - Controle explícito de buffers temporários e ponteiros de estado.
+        - Single-pass $O(N)$ linear algorithm identifying longest contiguous runs without recursion.
+        - Explicit state pointer and buffer management.
         """
         )
 
-    with st.expander("Módulos C4 e funcC7: Modelagem Estatística e Z-Score"):
+    with st.expander("Modules C4 & funcC7: Statistical Modeling & Z-Score"):
         st.markdown(
             """
-        - Cálculo de variância amostral com correção de Bessel ($N-1$) e populacional ($N$).
-        - Normalização de desvio padronizado para classificação determinística:
+        - Sample variance with Bessel's correction ($N-1$) vs. population variance ($N$).
+        - Standardized metric normalization for deterministic outlier identification:
           $$Z = \\frac{x - \\mu}{\\sigma}$$
-        - Estruturação em funções puras sem efeitos colaterais para facilitar testes unitários.
+        - Pure, side-effect-free functions designed for straightforward unit testing.
         """
         )
 
-    with st.expander("Módulos C5 a C7: Modularização e Resolução de Caminhos"):
+    with st.expander("Modules C5 through C7: Modularization & Path Resolution"):
         st.markdown(
             """
-        - Uso de `pathlib.Path` para resolução de caminhos absolutos relativos a `__file__`, evitando erros de CWD.
-        - Desacoplamento entre o motor de cálculo e os componentes de visualização gráfica.
+        - Absolute path normalization via `pathlib.Path` relative to `__file__`, avoiding working directory (CWD) dependency.
+        - Clean decoupling between analytical calculation routines and the Streamlit UI layer.
         """
         )
 
 st.markdown("---")
 st.markdown(
-    "<div style='text-align: center; color: #94a3b8; font-size: 0.85rem;'>ownStartup | Laboratório de Engenharia e Análise de Dados</div>",
+    "<div style='text-align: center; color: #94a3b8; font-size: 0.85rem;'>ownStartup | Quantitative Data & Engineering Lab</div>",
     unsafe_allow_html=True,
 )
